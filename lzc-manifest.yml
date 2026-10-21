@@ -1,0 +1,43 @@
+application:
+  subdomain: nexboot
+  background_task: true
+  multi_instance: false
+  public_path:
+    - /
+  upstreams:
+    - location: /
+      backend: http://nexboot:8080/
+
+services:
+  nexboot:
+    # upstream: ghcr.io/dockers-x/nexboot:v1.0.2（dockers-x 自动跟随上游 tag 构建）
+    image: ghcr.nju.edu.cn/dockers-x/nexboot:v1.0.2@sha256:51f7d612649111cd018fb7e76dce86fa7965f0fb6a4403fb5d877e3d1e4d5dab
+    privileged: true
+    # DHCP/PXE/iSCSI 需与客户机同二层网段
+    network_mode: host
+    environment:
+      - TZ=Asia/Shanghai
+      - NDISKLESS_ADDR=:8080
+      - NDISKLESS_POOL=tank
+      - NDISKLESS_BOOTSTRAP_USERNAME=admin
+      # 首次生成随机密码（entrypoint 输出到日志并持久化）
+      - NDISKLESS_BOOTSTRAP_PASSWORD={{ stable_secret "admin_password" }}
+    binds:
+      # SQLite 数据库、镜像导入目录
+      - /lzcapp/var/nexboot/data:/var/lib/ndiskless
+      # TFTP 资产（iPXE 固件）
+      - /lzcapp/var/nexboot/tftp:/srv/tftp
+      # dnsmasq 配置
+      - /lzcapp/var/nexboot/dnsmasq:/etc/dnsmasq.d
+      # ZFS 存储（宿主数据盘由管理员在 UI/命令行建池）
+      - /lzcapp/var/nexboot/keepalived:/etc/keepalived
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - -sf
+        - http://127.0.0.1:8080/healthz
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s

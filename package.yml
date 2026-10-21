@@ -1,0 +1,15 @@
+package: community.lazycat.app.nexboot
+version: 1.0.2
+name: NexBoot
+description: "A lightweight diskless boot platform built with Go, featuring iPXE, ZFS, iSCSI, and Web-based management"
+min_os_version: 1.5.0
+author: waterlemon0108
+license: AGPL-3.0
+homepage: https://github.com/waterlemon0108/nexboot
+locales:
+  zh:
+    name: "NexBoot 无盘启动"
+    description: "轻量级无盘启动平台：iPXE 网络引导、ZFS 存储池、iSCSI 批量装机、高可用集群与 Web 管理"
+  en:
+    name: "NexBoot"
+    description: "Lightweight diskless boot platform with iPXE, ZFS, iSCSI and web management"
