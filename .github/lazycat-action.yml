@@ -34,6 +34,6 @@ stores:
     enabled: false
   private:
     enabled: true
-    skip_if_version_exists: true
+    skip_if_version_exists: false
     name: NexBoot
     summary: "无盘启动平台：iPXE + ZFS + iSCSI"
