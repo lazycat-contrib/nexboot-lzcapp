@@ -9,6 +9,6 @@ application:
       backend: http://nexboot:8080/
 services:
   nexboot:
-    # upstream: ghcr.io/dockers-x/nexboot:v1.0.2
+    # upstream: ghcr.io/dockers-x/nexboot:v1.0.2@sha256:fb74e6267a72bad498205bcc65f69e37a751ef9628a9d0f8eb569cb811fc9fbe
     # privileged: true 经 lzc-build.yml compose_override 注入
-    image: ghcr.nju.edu.cn/dockers-x/nexboot:v1.0.2
+    image: ghcr.nju.edu.cn/dockers-x/nexboot:v1.0.2@sha256:fb74e6267a72bad498205bcc65f69e37a751ef9628a9d0f8eb569cb811fc9fbe
