@@ -13,18 +13,20 @@ update:
   version_source:
     type: image
     image: nexboot
+    bump: patch
 
 build:
   run_buildscript: false
 
 images:
+  # dockers-x 有 latest 可变 tag；digest 比对 + patch 自增
   - id: nexboot
     target: service
     service: nexboot
     source: ghcr.io/dockers-x/nexboot
-    channel: stable
-    sort: semver
-    tag_regex: '^v?\d+\.\d+\.\d+$'
+    channel: custom
+    sort: created
+    tag_regex: '^latest$'
     delivery:
       mode: mirror
       require_digest_match: true

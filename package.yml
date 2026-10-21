@@ -1,5 +1,5 @@
 package: community.lazycat.app.nexboot
-version: 1.0.3
+version: 1.0.2
 name: NexBoot
 description: "A lightweight diskless boot platform built with Go, featuring iPXE, ZFS, iSCSI, and Web-based management"
 min_os_version: 1.5.0
