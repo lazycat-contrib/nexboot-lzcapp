@@ -7,11 +7,10 @@ application:
   upstreams:
     - location: /
       backend: http://nexboot:8080/
-
 services:
   nexboot:
-    # upstream: ghcr.io/dockers-x/nexboot:v1.0.2（dockers-x 自动跟随上游 tag 构建）
-    image: ghcr.nju.edu.cn/dockers-x/nexboot:v1.0.2@sha256:51f7d612649111cd018fb7e76dce86fa7965f0fb6a4403fb5d877e3d1e4d5dab
+    # upstream: ghcr.io/dockers-x/nexboot:v1.0.2
+    image: ghcr.nju.edu.cn/dockers-x/nexboot:v1.0.2
     privileged: true
     # DHCP/PXE/iSCSI 需与客户机同二层网段
     network_mode: host
